@@ -1,6 +1,7 @@
-package io.budge.calculator
+package io.budge.calculator.di
 
 import dagger.Component
+import io.budge.calculator.ui.CalculatorActivity
 import javax.inject.Singleton
 
 @Singleton

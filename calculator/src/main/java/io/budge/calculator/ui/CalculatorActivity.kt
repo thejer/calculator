@@ -1,10 +1,17 @@
-package io.budge.calculator
+package io.budge.calculator.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import io.budge.calculator.DaggerCalculatorComponent
+import io.budge.calculator.R
+import io.budge.calculator.usecase.SumUseCase
+import io.budge.calculator.usecase.SumUseCase.Result.Failure
+import io.budge.calculator.usecase.SumUseCase.Result.Success
+import io.budge.calculator.di.CalculatorModule
 import javax.inject.Inject
 
 class CalculatorActivity : AppCompatActivity() {
@@ -18,7 +25,10 @@ class CalculatorActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DaggerCalculatorComponent.builder().build().inject(this)
+        DaggerCalculatorComponent.builder()
+            .calculatorModule(CalculatorModule(application))
+            .build()
+            .inject(this)
         setContentView(R.layout.activity_calculator)
 
         bindViews()
@@ -28,8 +38,17 @@ class CalculatorActivity : AppCompatActivity() {
     private fun calculateSum() {
         val firstNumber = firstNumberEditText.text.toString().toInt()
         val secondNumber = secondNumberEditText.text.toString().toInt()
-        val result = sumUseCase.execute(firstNumber, secondNumber)
-        resultTextView.text = result.toString()
+
+        sumUseCase.execute(firstNumber, secondNumber).let {
+            when (it) {
+                is Success -> resultTextView.text = it.result.toString()
+                is Failure -> showFailureMessage(it.message)
+            }
+        }
+    }
+
+    private fun showFailureMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun bindViews() {

@@ -1,8 +1,9 @@
-package io.budge.core
+package io.budge.core.di
 
 import android.app.Application
 import dagger.Module
 import dagger.Provides
+import io.budge.core.resources.StringsProvider
 import javax.inject.Singleton
 
 @Module

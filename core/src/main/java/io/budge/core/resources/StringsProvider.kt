@@ -1,4 +1,4 @@
-package io.budge.core
+package io.budge.core.resources
 
 import android.app.Application
 import androidx.annotation.StringRes

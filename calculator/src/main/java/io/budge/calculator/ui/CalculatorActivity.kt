@@ -7,11 +7,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import io.budge.calculator.R
-import io.budge.calculator.di.DaggerCalculatorComponent
+import io.budge.calculator.di.providers.CalculatorComponentProvider
 import io.budge.calculator.usecase.SumUseCase
 import io.budge.calculator.usecase.SumUseCase.Result.Failure
 import io.budge.calculator.usecase.SumUseCase.Result.Success
-import io.budge.core.di.CoreModule
 import javax.inject.Inject
 
 class CalculatorActivity : AppCompatActivity() {
@@ -27,9 +26,8 @@ class CalculatorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calculator)
 
-        DaggerCalculatorComponent.builder()
-            .coreModule(CoreModule(application))
-            .build()
+        (application as CalculatorComponentProvider)
+            .getCalculatorComponent()
             .inject(this)
 
         bindViews()

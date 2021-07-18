@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class CalculatorActivity : AppCompatActivity() {
 
-//    @Inject
+    @Inject
     lateinit var sumUseCase: SumUseCase
 
     lateinit var firstNumberEditText: EditText

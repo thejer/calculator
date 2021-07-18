@@ -1,4 +1,4 @@
-package io.budge.calculator
+package io.budge.core
 
 import android.app.Application
 import androidx.annotation.StringRes

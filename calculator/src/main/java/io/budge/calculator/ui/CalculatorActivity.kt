@@ -11,7 +11,7 @@ import io.budge.calculator.di.DaggerCalculatorComponent
 import io.budge.calculator.usecase.SumUseCase
 import io.budge.calculator.usecase.SumUseCase.Result.Failure
 import io.budge.calculator.usecase.SumUseCase.Result.Success
-import io.budge.core.CoreModule
+import io.budge.core.di.CoreModule
 import javax.inject.Inject
 
 class CalculatorActivity : AppCompatActivity() {

@@ -1,17 +1,17 @@
-package io.budge.calculator.di
+package io.budge.core.di
 
 import dagger.Module
 import dagger.Provides
-import io.budge.calculator.usecase.SumUseCase
+import io.budge.core.modes.AppSubscription
 import io.budge.core.resources.StringsProvider
 import javax.inject.Singleton
 
 @Module
-object CalculatorModule{
+object SubscriptionModule {
 
-    @Singleton
     @Provides
-    fun sumUseCase(
+    @Singleton
+    fun appSubscription(
         stringsProvider: StringsProvider
-    ): SumUseCase = SumUseCase(stringsProvider)
+    ) = AppSubscription(stringsProvider)
 }

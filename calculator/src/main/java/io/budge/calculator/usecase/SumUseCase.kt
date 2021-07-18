@@ -1,7 +1,7 @@
 package io.budge.calculator.usecase
 
 import io.budge.calculator.R
-import io.budge.calculator.StringsProvider
+import io.budge.core.StringsProvider
 
 class SumUseCase(
     val stringsProvider: StringsProvider

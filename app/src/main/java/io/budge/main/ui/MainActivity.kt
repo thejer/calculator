@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import io.budge.calculator.ui.CalculatorActivity
-import io.budge.core.di.CoreModule
 import io.budge.core.modes.AppSubscription
 import io.budge.main.R
-import io.budge.main.di.DaggerApplicationComponent
+import io.budge.main.di.ApplicationComponentProvider
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -20,10 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DaggerApplicationComponent
-            .builder()
-            .coreModule(CoreModule(application))
-            .build()
+        (application as ApplicationComponentProvider)
+            .getApplicationComponent()
             .inject(this)
 
         bindListeners()

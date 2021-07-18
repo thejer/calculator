@@ -6,7 +6,11 @@ import io.budge.core.modes.AppSubscription
 import io.budge.core.resources.StringsProvider
 import javax.inject.Singleton
 
-@Module
+@Module(
+    includes = [
+        CoreModule::class
+    ]
+)
 object SubscriptionModule {
 
     @Provides
